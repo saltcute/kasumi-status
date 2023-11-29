@@ -19,11 +19,22 @@ class Draw {
 
     async drawImage(status?: PrettifiedSystemStatus) {
         if (!status) status = await Status.getPrettified()
-
         const canvas = can.createCanvas(this.width, this.height)
         const ctx = canvas.getContext('2d')
+
+        /* Background */
         ctx.fillStyle = "#ffffff"
         ctx.fillRect(0, 0, this.width, this.height)
+        for (let i = 0; i < 4; ++i) {
+            ctx.fillStyle = "#639fff";
+            ctx.ellipse(
+                Math.random() * this.width,
+                Math.random() * this.height,
+                Math.random() * 10,
+                Math.random() * 10,
+                0, 0, 2 * Math.PI);
+        }
+        /* Background */
 
         ctx.textBaseline = "top";
         ctx.font = `semibold ${this.fontSize}px "Electrolux Sans"`;
