@@ -1,27 +1,27 @@
 import { Canvas, loadImage, CanvasRenderingContext2D, Image } from 'skia-canvas';
 import Status, { PrettifiedSystemStatus } from './status';
 class Draw {
-    readonly characterUrl = "https://cdn.discordapp.com/attachments/1008088968635625523/1179477265839558726/F-tAva0a8AAPUZ6.png";
+    private readonly characterUrl = "https://cdn.discordapp.com/attachments/1008088968635625523/1179477265839558726/F-tAva0a8AAPUZ6.png";
 
-    get characterWidth() { return 376; }
+    private get characterWidth() { return 376; }
 
-    _width: number;
-    _height: number;
-    _fontSize = 20;
+    private _width: number;
+    private _height: number;
+    private _fontSize = 20;
 
-    scale: number;
+    private scale: number;
 
-    get width() { return this._width; }
-    get height() { return this._height; }
-    get widthScaled() { return this._width * this.scale; }
-    get heightScaled() { return this._height * this.scale; }
-    get fontSize() { return this._fontSize; }
-    get smallerFontSize() { return this._fontSize * 0.8; }
+    private get width() { return this._width; }
+    private get height() { return this._height; }
+    private get widthScaled() { return this._width * this.scale; }
+    private get heightScaled() { return this._height * this.scale; }
+    private get fontSize() { return this._fontSize; }
+    private get smallerFontSize() { return this._fontSize * 0.8; }
 
-    get backgroundCircleBaseRadius() { return 128; }
-    get blurFilterBaseRadius() { return 64 * this.scale; }
+    private get backgroundCircleBaseRadius() { return 128; }
+    private get blurFilterBaseRadius() { return 64 * this.scale; }
 
-    characterImage!: Image;
+    private characterImage!: Image;
 
     private constructor(scale: number = 2) {
         this._width = 500;
@@ -52,7 +52,7 @@ class Draw {
         return canvas.toBuffer("png");
     }
 
-    drawBackGroundCircle(ctx: CanvasRenderingContext2D, color: string) {
+    private drawBackGroundCircle(ctx: CanvasRenderingContext2D, color: string) {
         ctx.fillStyle = color
         for (let i = 0; i < 7; ++i) {
             ctx.filter = `blur(${this.blurFilterBaseRadius}px)`;
@@ -70,7 +70,7 @@ class Draw {
         ctx.filter = "none";
     }
 
-    drawBackGround(ctx: CanvasRenderingContext2D) {
+    private drawBackGround(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, this.width, this.height)
 
@@ -84,7 +84,7 @@ class Draw {
     /**
      * Reference: https://www.victoriakirst.com/beziertool/
      */
-    drawCloud(ctx: CanvasRenderingContext2D, xoff: number, yoff: number) {
+    private drawCloud(ctx: CanvasRenderingContext2D, xoff: number, yoff: number) {
         ctx.beginPath();
         ctx.moveTo(2 + xoff, 93 + yoff);
         ctx.bezierCurveTo(-13 + xoff, 93 + yoff, 104 + xoff, 90 + yoff, 169 + xoff, 125 + yoff);
@@ -101,7 +101,7 @@ class Draw {
         ctx.filter = "none";
     }
 
-    drawText(ctx: CanvasRenderingContext2D, left: number, top: number, status: PrettifiedSystemStatus, titleGapAdjustment = 4, lineGapAdjustment = 8) {
+    private drawText(ctx: CanvasRenderingContext2D, left: number, top: number, status: PrettifiedSystemStatus, titleGapAdjustment = 4, lineGapAdjustment = 8) {
         const smallerLineGap = (this.smallerFontSize + titleGapAdjustment);
         const lineGap = (this.fontSize + lineGapAdjustment);
 
