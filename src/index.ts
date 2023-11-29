@@ -9,7 +9,7 @@ class StatusCommand extends BaseCommand {
     }
 
     func: CommandFunction<BaseSession, any> = async (session) => {
-        const { data, err } = await session.client.API.asset.create(await new Draw().drawImage());
+        const { data, err } = await session.client.API.asset.create(await (await Draw.builder()).drawImage());
         if (err) return session.send("Failed to upload image.");
         const url = data.url;
         return await session.client.API.message.create(MessageType.ImageMessage, session.channelId, url);

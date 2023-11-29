@@ -14,7 +14,9 @@ export interface SystemStatus {
     memoryFree: number,
 }
 export interface PrettifiedSystemStatus {
-    description: string,
+    name: string,
+    hostname: string,
+    runtime: string,
     load: string,
     mem: string,
     cpu: string
@@ -94,7 +96,9 @@ class Status {
     static async getPrettified(appName: string = "Kasumi.js"): Promise<PrettifiedSystemStatus> {
         const systemStatus = await this.get();
         return {
-            description: `${appName} on ${systemStatus.hostname} (${systemStatus.runtime}/${systemStatus.os})`,
+            name: appName,
+            hostname: systemStatus.hostname,
+            runtime: `${systemStatus.runtime}/${systemStatus.os}`,
             load: `${systemStatus.cpuLoad.toFixed(2)}`,
             mem: `${((1 - (systemStatus.memoryFree / systemStatus.memoryTotal)) * 100).toFixed(2)}% ${systemStatus.memoryFree.toFixed(2)} GB/${systemStatus.memoryTotal.toFixed(2)} GB`,
             cpu: `${systemStatus.cpuCores}x ${systemStatus.cpuName} @${systemStatus.cpuSpeed} MHz`
