@@ -2,6 +2,8 @@ import { BaseCommand, BaseSession, CommandFunction, MessageType } from "kasumi.j
 import Draw from "./draw";
 
 class StatusCommand extends BaseCommand {
+    description = "展示服务器概况";
+
     draw: Draw | Promise<Draw> = Draw.builder();
     constructor(name: string = "status") {
         super();
