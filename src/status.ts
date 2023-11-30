@@ -100,7 +100,7 @@ class Status {
             hostname: systemStatus.hostname,
             runtime: `${systemStatus.runtime}/${systemStatus.os}`,
             load: `${systemStatus.cpuLoad.toFixed(2)}`,
-            mem: `${((1 - (systemStatus.memoryFree / systemStatus.memoryTotal)) * 100).toFixed(2)}% ${systemStatus.memoryFree.toFixed(2)} GB/${systemStatus.memoryTotal.toFixed(2)} GB`,
+            mem: `${((1 - (systemStatus.memoryFree / systemStatus.memoryTotal)) * 100).toFixed(2)}% ${(systemStatus.memoryTotal - systemStatus.memoryFree).toFixed(2)} GB/${systemStatus.memoryTotal.toFixed(2)} GB`,
             cpu: `${systemStatus.cpuCores}x ${systemStatus.cpuName} @${systemStatus.cpuSpeed} MHz`
         };
     }

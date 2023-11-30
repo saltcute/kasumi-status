@@ -111,8 +111,8 @@ class Draw {
         ctx.fillText("App:", left, top);
         ctx.fillText("Host:", left, top + (smallerLineGap + lineGap));
         ctx.fillText("CPU:", left, top + (smallerLineGap * 2 + lineGap * 3));
-        ctx.fillText("Memory:", left, top + (smallerLineGap * 3 + lineGap * 4));
-        ctx.fillText("Sys Load:", left, top + (smallerLineGap * 4 + lineGap * 5));
+        ctx.fillText("Memory Usage:", left, top + (smallerLineGap * 3 + lineGap * 4));
+        ctx.fillText("System Load:", left, top + (smallerLineGap * 4 + lineGap * 5));
 
         ctx.font = `600 ${this.fontSize}px "Electrolux Sans"`;
         ctx.fillStyle = "#000000";
