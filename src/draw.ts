@@ -1,7 +1,7 @@
 import { Canvas, loadImage, CanvasRenderingContext2D, Image } from 'skia-canvas';
 import Status, { PrettifiedSystemStatus } from './status';
 class Draw {
-    private readonly characterUrl = "https://cdn.discordapp.com/attachments/1008088968635625523/1179477265839558726/F-tAva0a8AAPUZ6.png";
+    private readonly characterUrl = "https://img.kookapp.cn/assets/2023-12/LtCDpAQ0lI0io0xc.png";
 
     private get characterWidth() { return 376; }
 
