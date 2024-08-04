@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/Hexona69/kasumi-ping#readme",
   "dependencies": {
-    "canvas": "^2.11.2",
     "delay": "^6.0.0",
     "kasumi.js": "^0.6.0",
     "macos-release": "^3.2.0",
