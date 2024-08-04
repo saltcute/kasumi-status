@@ -205,7 +205,7 @@ class Draw {
         const smallerLineGap = this.smallerFontSize + titleGapAdjustment;
         const lineGap = this.fontSize + lineGapAdjustment;
 
-        ctx.font = `600 ${this.smallerFontSize}px "Electrolux Sans"`;
+        ctx.font = `600 ${this.smallerFontSize}px "Comfortaa"`;
         ctx.fillStyle = "#5f5f5f";
 
         ctx.fillText("App:", left, top);
