@@ -1,5 +1,7 @@
-import { Canvas, loadImage, CanvasRenderingContext2D, Image } from 'skia-canvas';
+import { Canvas, loadImage, CanvasRenderingContext2D, Image, FontLibrary } from 'skia-canvas';
 import Status, { PrettifiedSystemStatus } from './status';
+import upath from 'upath';
+
 class Draw {
     private readonly characterUrl = "https://img.kookapp.cn/assets/2023-12/LtCDpAQ0lI0io0xc.png";
 
@@ -32,6 +34,7 @@ class Draw {
     static async builder() {
         const instance = new this();
         instance.characterImage = await loadImage(instance.characterUrl);
+        FontLibrary.use("Comfortaa", upath.join(__dirname, "..", "font"))
         return instance;
     }
 
