@@ -1,5 +1,5 @@
 import Draw from "./draw";
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync, mkdirSync } from "fs";
 
 (async () => {
     const draw = await Draw.builder();
@@ -7,4 +7,4 @@ import { writeFileSync, mkdirSync } from 'fs';
     const buffer = await draw.drawImage();
     mkdirSync("test", { recursive: true });
     writeFileSync("test/test.png", buffer);
-})()
+})();

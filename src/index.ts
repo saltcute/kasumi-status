@@ -1,4 +1,9 @@
-import { BaseCommand, BaseSession, CommandFunction, MessageType } from "kasumi.js";
+import {
+    BaseCommand,
+    BaseSession,
+    CommandFunction,
+    MessageType,
+} from "kasumi.js";
 import Draw from "./draw";
 
 class StatusCommand extends BaseCommand {
@@ -12,11 +17,17 @@ class StatusCommand extends BaseCommand {
 
     func: CommandFunction<BaseSession, any> = async (session) => {
         if (this.draw instanceof Promise) this.draw = await this.draw;
-        const { data, err } = await session.client.API.asset.create(await this.draw.drawImage());
+        const { data, err } = await session.client.API.asset.create(
+            await this.draw.drawImage()
+        );
         if (err) return session.send("Failed to upload image.");
         const url = data.url;
-        return await session.client.API.message.create(MessageType.ImageMessage, session.channelId, url);
-    }
+        return await session.client.API.message.create(
+            MessageType.ImageMessage,
+            session.channelId,
+            url
+        );
+    };
 }
 
 export default StatusCommand;
