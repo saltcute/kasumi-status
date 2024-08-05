@@ -10,7 +10,10 @@ class StatusCommand extends BaseCommand {
     description = "展示服务器概况";
 
     draw: Draw | Promise<Draw> = Draw.builder();
-    constructor(name: string = "status") {
+    constructor(
+        name: string = "status",
+        private appName: string = "Kasumi.js"
+    ) {
         super();
         this.name = name;
     }
@@ -18,7 +21,7 @@ class StatusCommand extends BaseCommand {
     func: CommandFunction<BaseSession, any> = async (session) => {
         if (this.draw instanceof Promise) this.draw = await this.draw;
         const { data, err } = await session.client.API.asset.create(
-            await this.draw.drawImage()
+            await this.draw.drawImage(undefined, this.appName)
         );
         if (err) return session.send("Failed to upload image.");
         const url = data.url;

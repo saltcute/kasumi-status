@@ -59,17 +59,24 @@ class Draw {
     static async builder() {
         const instance = new this();
         instance.characterImage = await loadImage(instance.characterUrl);
-        FontLibrary.use(
-            "Comfortaa",
-            upath.join(
+        FontLibrary.use({
+            "Body Font": upath.join(
                 __dirname,
                 "..",
                 "assets",
                 "font",
                 "comfortaa",
                 "comfortaa.ttf"
-            )
-        );
+            ),
+            "Title Font": upath.join(
+                __dirname,
+                "..",
+                "assets",
+                "font",
+                "montserrat",
+                "montserrat.ttf"
+            ),
+        });
         return instance;
     }
 
@@ -77,8 +84,8 @@ class Draw {
         this.scale = scale;
     }
 
-    async drawImage(status?: PrettifiedSystemStatus) {
-        if (!status) status = await Status.getPrettified();
+    async drawImage(status?: PrettifiedSystemStatus, appName = "Kasumi.js") {
+        if (!status) status = await Status.getPrettified(appName);
         const canvas = new Canvas(this.widthScaled, this.heightScaled);
         const ctx = canvas.getContext("2d");
         ctx.scale(this.scale, this.scale);
@@ -205,7 +212,7 @@ class Draw {
         const smallerLineGap = this.smallerFontSize + titleGapAdjustment;
         const lineGap = this.fontSize + lineGapAdjustment;
 
-        ctx.font = `600 ${this.smallerFontSize}px "Comfortaa"`;
+        ctx.font = `600 ${this.smallerFontSize}px "Title Font"`;
         ctx.fillStyle = "#5f5f5f";
 
         ctx.fillText("App:", left, top);
@@ -222,7 +229,7 @@ class Draw {
             top + (smallerLineGap * 4 + lineGap * 5)
         );
 
-        ctx.font = `600 ${this.fontSize}px "Electrolux Sans"`;
+        ctx.font = `600 ${this.fontSize}px "Body Font"`;
         ctx.fillStyle = "#000000";
         ctx.fillText(status.name, left, top + smallerLineGap * 1);
         ctx.fillText(

@@ -104,7 +104,7 @@ class Status {
         return systemStatus;
     }
     static async getPrettified(
-        appName: string = "Kasumi.js"
+        appName: string
     ): Promise<PrettifiedSystemStatus> {
         const systemStatus = await this.get();
         return {
